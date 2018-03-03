@@ -1,0 +1,1011 @@
+swagger: "2.0"
+info:
+  description: "This is the api document of shuer.link"
+  version: "1.0.0"
+  title: "SHUer.link API"
+host: "shuer.link"
+basePath: "/api/v1"
+tags:
+- name: "user"
+  description: "Access to login"
+- name: "setting"
+  description: "Access to set user info"
+schemes:
+- "https"
+paths:
+  /user/login:
+    post:
+      tags:
+      - "user"
+      summary: "login user"
+      operationId: "loginUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "body"
+        in: "body"
+        description: "ID & password of user that needs to be fetched"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        201:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/UserInfo"
+        400:
+          description: "Invalid cardId/password supplied"
+        404:
+          description: "User not found or password error"
+  /user/logout:
+    post:
+      tags:
+      - "user"
+      summary: "logout user"
+      operationId: "logoutUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "applocation/json"
+      parameters:
+      - name: "body"
+        in: "body"
+        description: "ID of user that needs to be fetched"
+        required: true
+        schema:
+          properties:
+            cardId:
+              type: "string"
+      responses:
+        default:
+          description: "successful operation"
+      deprecated: true
+      
+  /setting/{cardId}/generalsetting:
+    get:
+      tags: 
+      - setting
+      summary: "Find all general setting by Id"
+      operationId: findGeneralSettingById
+      produces:
+      - "application/json"
+      parameters:
+      - name: "cardId"
+        in: "path"
+        description: "ID of user that needs to be fetched"
+        required: true
+        type: "integer"
+        format: "int32"
+      responses: 
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/GeneralSetting"
+        400:
+          description: "Invalid cardId supplied"
+        401:
+          description: "Token has been out of date" 
+        404:
+          description: "User not found"
+      security:
+        - JWTSecurity: []  
+        
+  /setting/{cardId}/changeWallpaperTime:
+    put:
+      tags:
+      - setting
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "cardId"
+          in: "path"
+          description: "ID of user needs to be updated"
+          required: true
+          type: "integer"
+          format: "int32"
+        - name: "body"
+          in: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/changeWallpaperTime"
+      responses:
+        201:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/changeWallpaperTime"
+        400:
+          description: "Invalid cardId supplied"
+        401:
+          description: "Token has been out of date"
+        404:
+          description: User not found
+      security:
+        - JWTSecurity: []
+  /setting/{cardId}/autoComplete:
+    put:
+      tags:
+      - setting
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "cardId"
+          in: "path"
+          description: "ID of user needs to be updated"
+          required: true
+          type: "integer"
+          format: "int32"
+        - name: "body"
+          in: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/autoComplete"
+      responses:
+        201:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/autoComplete"
+        400:
+          description: "Invalid cardId supplied"
+        401:
+          description: "Token has been out of date"
+        404:
+          description: User not found
+      security:
+        - JWTSecurity: []
+  /setting/{cardId}/autoChangeWallpaper:
+    put:
+      tags:
+      - setting
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "cardId"
+          in: "path"
+          description: "ID of user needs to be updated"
+          required: true
+          type: "integer"
+          format: "int32"
+        - name: "body"
+          in: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/autoChangeWallpaper"
+      responses:
+        201:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/autoChangeWallpaper"
+        400:
+          description: "Invalid cardId supplied"
+        401:
+          description: "Token has been out of date"
+        404:
+          description: User not found
+      security:
+        - JWTSecurity: []
+  /setting/{cardId}/defaultWikiLanguage:
+    put:
+      tags:
+      - setting
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "cardId"
+          in: "path"
+          description: "ID of user needs to be updated"
+          required: true
+          type: "integer"
+          format: "int32"
+        - name: "body"
+          in: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/defaultWikiLanguage"
+      responses:
+        201:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/defaultWikiLanguage"
+        400:
+          description: "Invalid cardId supplied"
+        401:
+          description: "Token has been out of date"
+        404:
+          description: User not found
+      security:
+        - JWTSecurity: []
+  /setting/{cardId}/defaultSearchEngine:
+    put:
+      tags:
+      - setting
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "cardId"
+          in: "path"
+          description: "ID of user needs to be updated"
+          required: true
+          type: "integer"
+          format: "int32"
+        - name: "body"
+          in: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/defaultSearchEngine"
+      responses:
+        201:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/defaultSearchEngine"
+        400:
+          description: "Invalid cardId supplied"
+        401:
+          description: "Token has been out of date"
+        404:
+          description: User not found
+      security:
+        - JWTSecurity: []
+  /setting/{cardId}/theme:
+    put:
+      tags:
+      - setting
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "cardId"
+          in: "path"
+          description: "ID of user needs to be updated"
+          required: true
+          type: "integer"
+          format: "int32"
+        - name: "body"
+          in: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/theme"
+      responses:
+        201:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/theme"
+        400:
+          description: "Invalid cardId supplied"
+        401:
+          description: "Token has been out of date"
+        404:
+          description: User not found
+      security:
+        - JWTSecurity: []
+  /setting/{cardId}/wallpaperCategory:
+    put:
+      tags:
+      - setting
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "cardId"
+          in: "path"
+          description: "ID of user needs to be updated"
+          required: true
+          type: "integer"
+          format: "int32"
+        - name: "body"
+          in: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/wallpaperCategory"
+      responses:
+        201:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/wallpaperCategory"
+        400:
+          description: "Invalid cardId supplied"
+        401:
+          description: "Token has been out of date"
+        404:
+          description: User not found
+      security:
+        - JWTSecurity: []
+  /setting/{cardId}/defaultBackgroundImage:
+    put:
+      tags:
+      - setting
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "cardId"
+          in: "path"
+          description: "ID of user needs to be updated"
+          required: true
+          type: "integer"
+          format: "int32"
+        - name: "body"
+          in: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/defaultBackgroundImage"
+      responses:
+        201:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/defaultBackgroundImage"
+        400:
+          description: "Invalid cardId supplied"
+        401:
+          description: "Token has been out of date"
+        404:
+          description: User not found
+      security:
+        - JWTSecurity: []
+  /setting/{cardId}/collection:
+    get:
+      tags:
+      - "setting"
+      summary: "Find all collections by ID"
+      description: "Return an array of collections"
+      operationId: "findCollectionById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "cardId"
+        in: "path"
+        description: "ID of user that needs to be fetched"
+        required: true
+        type: "integer"
+        format: "int32"
+      - name: "page"
+        in: query
+        description: "number of page to search"
+        type: integer
+        format: "int32"
+      - name: "size"
+        in: query
+        description: "size of per page"
+        type: integer
+        format: int32
+      responses: 
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Collection"
+        400:
+          description: "Invalid cardId"
+        401:
+          description: "Token has been out of date" 
+        404:
+          description: "User not found"
+      security:
+        - JWTSecurity: []  
+    post:
+      tags:
+      - "setting"
+      summary: "Create a collection of search engine"
+      operationId: "createCollectionByCardId"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "cardId"
+        in: "path"
+        description: "ID of user that needs to be fetched"
+        required: true
+        type: "integer"
+        format: "int32"
+      - name: "collection"
+        in: "body"
+        description: "collection that user wants to create"
+        required: true
+        schema:
+          $ref: "#/definitions/Collection2"
+      responses:
+        201:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Collection"
+        400:
+          description: "Invalid cardId"
+        401:
+          description: "Token has been out of date"
+        404:
+          description: "User not found"  
+      security:
+        - JWTSecurity: []
+  /setting/{cardId}/collection/{collectionId}:
+    put:
+      tags:
+      - "setting"
+      summary: "Update a collection of the user"
+      operationId: "updateCollectionById"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "cardId"
+          in: "path"
+          description: "ID of user needs to be updated"
+          required: true
+          type: "integer"
+          format: "int32"
+        - name: "collectionId"
+          in: "path"
+          description: "ID of collection needs to be updated"
+          required: true
+          type: "string"
+        - name: "body"
+          in: "body"
+          required: true
+          schema: 
+            $ref: "#/definitions/Collection2"
+      responses:
+        201:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Collection"
+        400:
+          description: "Invalid cardId/collectionId supplied"
+        401:
+          description: "Token has been out of date"
+        404:
+          description: Collection not found
+      security:
+        - JWTSecurity: []
+    delete:
+      tags:
+      - setting
+      summary: "Delete a collection of the user"
+      operationId: "deleteCollectionById"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "cardId"
+          in: "path"
+          description: "ID of user needs to be updated"
+          required: true
+          type: "integer"
+          format: "int32"
+        - name: "collectionId"
+          in: "path"
+          description: "ID of collection needs to be updated"
+          required: true
+          type: "string"
+      responses:
+        204:
+          description: Successful operation
+        400:
+          description: Invalid cardId/collectionId supplied
+        401:
+          description: Token has been out of date
+        404:
+          description: Collection not found
+      security:
+        - JWTSecurity: []
+  /setting/{cardId}/navigation:
+    get:
+      tags:
+      - "setting"
+      summary: "Find all navigations by ID"
+      description: "Return an array of collections"
+      operationId: "findNavigationById"
+      produces:
+      - "application/json"
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "cardId"
+        in: "path"
+        description: "ID of user that needs to be fetched"
+        required: true
+        type: "integer"
+        format: "int32"
+      - name: "page"
+        in: query
+        description: "number of page to search"
+        type: integer
+        format: "int32"
+      - name: "size"
+        in: query
+        description: "size of per page"
+        type: integer
+        format: int32
+      responses: 
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Navigation"
+        400:
+          description: "Invalid cardId"
+        401:
+          description: "Token has been out of date"
+        404:
+          description: "User not found"
+      security:
+        - JWTSecurity: []
+    post:
+      tags:
+      - "setting"
+      summary: "Create a navigation"
+      operationId: "createNavigationById"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "cardId"
+        in: "path"
+        description: "ID of user that needs to be fetched"
+        required: true
+        type: "integer"
+        format: "int32"
+      - name: "navigation"
+        in: "body"
+        description: "navigation that user wants to create"
+        required: true
+        schema:
+          $ref: "#/definitions/Navigation2"
+      responses:
+        201:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Navigation"
+        400:
+          description: "Invalid cardId"
+        401:
+          description: "Token has been out of date"
+        404:
+          description: "User not found"
+      security:
+        - JWTSecurity: []
+  /setting/{cardId}/navigation/{navigationId}:
+    put:
+      tags:
+      - "setting"
+      summary: "Update a navigation"
+      operationId: "updateNavigationById"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "cardId"
+          in: "path"
+          description: "ID of user needs to be updated"
+          required: true
+          type: "integer"
+          format: "int32"
+        - name: "navigationId"
+          in: "path"
+          description: "ID of navigation needs to be updated"
+          required: true
+          type: "string"
+        - name: "body"
+          in: "body"
+          schema: 
+            $ref: "#/definitions/Navigation2"
+      responses:
+        201:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Navigation"
+        400:
+          description: "Invalid cardId/navigationId supplied"
+        401:
+          description: "Token has been out of date"
+        404:
+          description: Navigation not found
+      security:
+        - JWTSecurity: []
+    delete:
+      tags:
+      - setting
+      summary: "Delete a navigation of the user"
+      operationId: "deleteNavigationById"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "cardId"
+          in: "path"
+          description: "ID of user needs to be updated"
+          required: true
+          type: "integer"
+          format: "int32"
+        - name: "navigationId"
+          in: "path"
+          description: "ID of navigation needs to be updated"
+          required: true
+          type: "string"
+      responses:
+        204:
+          description: Successful operation
+        400:
+          description: Invalid cardId/navigationId supplied
+        401:
+          description: Token has been out of date
+        404:
+          description: Navigation not found
+      security:
+        - JWTSecurity: []
+  /setting/{cardId}/searchengine:
+    post:
+      tags:
+      - "setting"
+      summary: "Create a search engine"
+      operationId: "createSearchEngineById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "cardId"
+        in: "path"
+        description: "ID of user that needs to be fetched"
+        required: true
+        type: "integer"
+        format: "int32"
+      - name: "searchengine"
+        in: "body"
+        description: "search engine that user wants to create"
+        required: true
+        schema:
+          $ref: "#/definitions/SearchEngine2"
+      responses:
+        201:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/SearchEngine"
+        400:
+          description: "Invalid cardId"
+        401:
+          description: "Token has been out of date"
+        404:
+          description: "User not found"
+      security:
+        - JWTSecurity: []
+    get:
+      tags:
+      - "setting"
+      summary: "Find  all search engines by ID"
+      description: "Return an array  of search engine"
+      operationId: "findSearchEngineById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "cardId"
+        in: "path"
+        description: "ID of user that needs to be fetched"
+        required: true
+        type: "integer"
+        format: "int32"
+      - name: "page"
+        in: query
+        description: "number of page to search"
+        type: integer
+        format: "int32"
+      - name: "size"
+        in: query
+        description: "size of per page"
+        type: integer
+        format: int32
+      responses: 
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/SearchEngine"
+        400:
+          description: "Invalid cardId"
+        401:
+          description: "Token has been out of date"
+        404:
+          description: "User not found"
+      security:
+        - JWTSecurity: []
+  /setting/{cardId}/searchengine/{searchengineId}:
+    put:
+      tags:
+      - "setting"
+      summary: "Update a search engine of the user"
+      operationId: "updateSearchEngineById"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "cardId"
+          in: "path"
+          description: "ID of user needs to be updated"
+          required: true
+          type: "integer"
+          format: "int32"
+        - name: "searchengineId"
+          in: "path"
+          description: "ID of search engine needs to be updated"
+          required: true
+          type: "string"
+        - name: "body"
+          in: "body"
+          schema: 
+            $ref: "#/definitions/SearchEngine2"
+      responses:
+        201:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/SearchEngine"
+        400:
+          description: "Invalid cardId/searchengineId supplied"
+        401:
+          description: "Token has been out of date"
+        404:
+          description: Search engine not found
+      security:
+        - JWTSecurity: []
+    delete:
+      tags:
+      - setting
+      summary: "Delete a search engine of the user"
+      operationId: "deleteSearchEngineById"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "cardId"
+          in: "path"
+          description: "ID of user needs to be updated"
+          required: true
+          type: "integer"
+          format: "int32"
+        - name: "searchengineId"
+          in: "path"
+          description: "ID of search engine needs to be updated"
+          required: true
+          type: "string"
+      responses:
+        204:
+          description: Successful operation
+        400:
+          description: Invalid cardId/searchengineId supplied
+        401:
+          description: Token has been out of date
+        404:
+          description: Search engine not found
+      security:
+        - JWTSecurity: []
+securityDefinitions:
+  JWTSecurity:
+    type: apiKey
+    in: header
+    name: JWT
+definitions:
+  User:
+    type: "object"
+    properties:
+      cardId:
+        type: "integer"
+        format: "Int32"
+      password:
+        type: "string"
+    xml:
+      name: "User"
+  GeneralSetting:
+    type: "object"
+    properties:
+      avatar:
+        type: "string"
+      name:
+        type: "string"
+      nickname:
+        type: "string"
+      changeWallpaperTime: 
+        type: "string"
+      autoComplete:
+        type: "boolean"
+      autoChangeWallpaper:
+        type: "boolean"
+      defaultWikiLanguage:
+        type: "string"
+      defaultSearchEngine:
+        type: "string"
+      theme:
+        type: "string"
+      wallpaperCategory:
+        type: "object"
+        properties:
+          others:
+            type: "boolean"
+          SHU:
+            type: "boolean"
+      defaultBackgroundImage:
+        type: "string"
+    xml:
+      name: "GeneralSetting"
+  changeWallpaperTime:
+    type: object
+    properties:
+      changeWallpaperTime:
+        type: string
+  autoComplete:
+    type: object
+    properties:
+      autoComplete:
+        type: boolean
+  autoChangeWallpaper:
+    type: object
+    properties:
+      autoChangeWallpaper:
+        type: boolean
+  defaultWikiLanguage:
+    type: object
+    properties:
+      defaultWikiLanguage:
+        type: string
+  defaultSearchEngine:
+    type: object
+    properties:
+      defaultSearchEngine:
+        type: string
+  wallpaperCategory:
+    type: object
+    properties:
+      others:
+        type: boolean
+      SHU:
+        type: boolean
+  defaultBackgroundImage:
+    type: object
+    properties:
+      defaultBackgroundImage:
+        type: string
+  theme:
+    type: object
+    properties:
+      theme:
+        type: string
+  UserInfo:
+    type: "object"
+    properties:
+      avatar:
+        type: "string"
+      name:
+        type: "string"
+      nickname:
+        type: "string"
+      changeWallpaperTime: 
+        type: "string"
+      autoComplete:
+        type: "boolean"
+      autoChangeWallpaper:
+        type: "boolean"
+      defaultWikiLanguage:
+        type: "string"
+      defaultSearchEngine:
+        type: "string"
+      theme:
+        type: "string"
+      wallpaperCategory:
+        type: "object"
+        properties:
+          others:
+            type: "boolean"
+          SHU:
+            type: "boolean"
+      defaultBackgroundImage:
+        type: "string"
+      collection:
+        type: array
+        items:
+          $ref: "#/definitions/Collection"
+      navigation:
+        type: array
+        items:
+          $ref: "#/definitions/Navigation"
+      searchEngine:
+        type: array
+        items:
+          $ref: "#/definitions/SearchEngine"
+      token:
+        type: string
+    xml:
+      name: "UserInfo"
+  Collection:
+    type: "object"
+    properties:
+      collectionId:
+        type: "string"
+      collectionName:
+        type: "string"
+      collectionDescription:
+        type: "string"
+      defaultSearchInfo:
+        type: "string"
+      searchEngine:
+        type: "array"
+        items:
+          $ref: "#/definitions/SearchEngine"
+    xml:
+      name: "Collection"
+  Collection2: 
+    type: "object"
+    properties:
+      collectionName:
+        type: "string"
+      collectionDescription:
+        type: "string"
+      defaultSearchInfo:
+        type: "string"
+      searchEngine:
+        type: "array"
+        items:
+          $ref: "#/definitions/SearchEngine"
+    xml:
+      name: "Collection2"
+  Navigation:
+    type: "object"
+    properties:
+      navigationId:
+        type: "string"
+      title:
+        type: "string"
+      description:
+        type: "string"
+      url:
+        type: "string"
+  Navigation2:
+    type: "object"
+    properties:
+      title:
+        type: "string"
+      description:
+        type: "string"
+      url:
+        type: "string"
+  SearchEngine:
+    type: "object"
+    properties:
+      searchEngineId:
+        type: "string"
+      name:
+        type: "string"
+      description:
+        type: "string"
+      url:
+        type: "string"
+        description: "https://www.google.com/search?q=[keyword]"
+  SearchEngine2:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      description:
+        type: "string"
+      url:
+        type: "string"

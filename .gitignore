@@ -1,0 +1,11 @@
+/target/
+/.idea
+.settings/
+target/
+.classpath
+.project
+api.iml
+/logs
+src/main/resources/mongodbkey.xml
+src/main/java/org/shuerlink/model/contains
+src/test
