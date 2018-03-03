@@ -1,5 +1,7 @@
 # SHUer.link-API-v1
-    API文档 shuer.link_api_v1.yaml， 用[Swagger Editor](https://editor.swagger.io/)预览。
+API文档 shuer.link_api_v1.yaml， 用[Swagger Editor](https://editor.swagger.io)预览。
+
+使用 JWT 鉴权，便于横向扩展。
 ## Dependency
 > Spring MVC 4.3.11.RELEASE
 
