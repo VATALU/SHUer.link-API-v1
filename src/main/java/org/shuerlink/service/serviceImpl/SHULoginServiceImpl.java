@@ -1,9 +1,9 @@
-package org.shuerlink.serviceImpl;
+package org.shuerlink.service.serviceImpl;
 
 import org.shuerlink.client.SHUHelperClient;
 import org.shuerlink.client.ServiceClient;
-import org.shuerlink.daoImpl.SettingDaoImpl;
-import org.shuerlink.daoImpl.UserDaoImpl;
+import org.shuerlink.dao.daoImpl.SettingDaoImpl;
+import org.shuerlink.dao.daoImpl.UserDaoImpl;
 import org.shuerlink.model.dto.UserInfo;
 import org.shuerlink.model.entity.SHUHelperInfo;
 import org.shuerlink.model.contains.CommonEnum;

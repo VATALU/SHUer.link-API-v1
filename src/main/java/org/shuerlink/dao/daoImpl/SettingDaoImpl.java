@@ -1,4 +1,4 @@
-package org.shuerlink.daoImpl;
+package org.shuerlink.dao.daoImpl;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.WriteResult;

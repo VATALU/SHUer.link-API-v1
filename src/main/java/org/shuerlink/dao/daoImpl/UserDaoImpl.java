@@ -1,4 +1,4 @@
-package org.shuerlink.daoImpl;
+package org.shuerlink.dao.daoImpl;
 
 import org.shuerlink.dao.UserDao;
 import org.shuerlink.model.dto.UserInfo;

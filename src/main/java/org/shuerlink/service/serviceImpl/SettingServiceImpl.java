@@ -1,6 +1,6 @@
-package org.shuerlink.serviceImpl;
+package org.shuerlink.service.serviceImpl;
 
-import org.shuerlink.daoImpl.SettingDaoImpl;
+import org.shuerlink.dao.daoImpl.SettingDaoImpl;
 import org.shuerlink.model.entity.Navigation;
 import org.shuerlink.model.entity.SearchEngineCollection;
 import org.shuerlink.model.entity.SearchEngineSource;
