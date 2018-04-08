@@ -171,4 +171,26 @@ public class UserInfo {
     public void setToken(String token) {
         this.token = token;
     }
+
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "cardId='" + cardId + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", name='" + name + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", changeWallpaperTime='" + changeWallpaperTime + '\'' +
+                ", autoComplete=" + autoComplete +
+                ", autoChangeWallpaper=" + autoChangeWallpaper +
+                ", defaultWikiLanguage='" + defaultWikiLanguage + '\'' +
+                ", defaultSearchEngine='" + defaultSearchEngine + '\'' +
+                ", theme='" + theme + '\'' +
+                ", wallpaperCategory=" + wallpaperCategory +
+                ", defaultBackgroundImage='" + defaultBackgroundImage + '\'' +
+                ", collection=" + collection +
+                ", navigation=" + navigation +
+                ", searchEngine=" + searchEngine +
+                ", token='" + token + '\'' +
+                '}';
+    }
 }

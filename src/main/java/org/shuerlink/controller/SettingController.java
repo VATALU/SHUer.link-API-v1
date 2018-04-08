@@ -9,7 +9,7 @@ import org.shuerlink.model.response.GeneralSettingResponse;
 import org.shuerlink.model.response.NavigationResponse;
 import org.shuerlink.model.response.SearchEngineResponse;
 import org.shuerlink.model.dto.WallpaperCategory;
-import org.shuerlink.serviceImpl.SettingServiceImpl;
+import org.shuerlink.service.serviceImpl.SettingServiceImpl;
 import org.shuerlink.util.BeanUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -235,7 +235,6 @@ public class SettingController {
     @RequestMapping(value = "/{cardId}/collection/{collectionId}", produces = "application/json; charset=utf-8", method = RequestMethod.PUT)
     public @ResponseBody
     ResponseEntity<CollectionResponse> updateCollection(@PathVariable("cardId") Integer cardId, @PathVariable("collectionId") String collectionId, @RequestBody SearchEngineCollection searchEngineCollection) throws Exception {
-        System.out.println(searchEngineCollection.getDefaultSearchInfo());
         if (cardId == null || collectionId == null || collectionId.equals("") || !BeanUtil.isEveryFieldNotNull(searchEngineCollection)) {
             //400
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
